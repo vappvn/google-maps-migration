@@ -1,0 +1,27 @@
+{
+ "engine": "tantivy-vnaddr",
+ "parsed": {
+  "district": null,
+  "house": "54",
+  "province": "hcm",
+  "rest": [],
+  "street": "nguyen hue",
+  "ward": "sai gon"
+ },
+ "q": "54 Nguyễn Huệ, phường Sài Gòn, TP.HCM",
+ "results": [
+  {
+   "confidence": "street",
+   "district": "Phường Sài Gòn",
+   "kind": "tertiary",
+   "lat": 10.7734498475666,
+   "lng": 106.70408998327721,
+   "name": "Nguyễn Huệ",
+   "place_id": "vm_a4a7fcf3f71b3078",
+   "precision": "interpolated",
+   "province": "Thành phố Hồ Chí Minh",
+   "score": 277.2509765625,
+   "ward": "sai gon"
+  }
+ ]
+}

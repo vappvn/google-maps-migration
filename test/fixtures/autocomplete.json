@@ -1,0 +1,22 @@
+{
+ "matched": "landmark 81",
+ "q": "landmark 81",
+ "results": [
+  {
+   "kind": "landmark_and_historical_building",
+   "lat": 10.795117378234863,
+   "lng": 106.72207641601562,
+   "name": "Landmark 81 Luxury",
+   "place_id": "vm_0a1b2ade08ff09f2",
+   "score": 1.5375267267227173
+  },
+  {
+   "kind": "bookstore",
+   "lat": 10.794837951660156,
+   "lng": 106.72099304199219,
+   "name": "Landmark 81 Mentor",
+   "place_id": "vm_bdddc9afb4a99c1d",
+   "score": 1.5104401111602783
+  }
+ ]
+}

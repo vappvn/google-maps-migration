@@ -1,0 +1,30 @@
+{
+ "engine": "tantivy",
+ "q": "cho ben thanh",
+ "results": [
+  {
+   "address": "Quận 1",
+   "confidence": "exact",
+   "district": "Phường Bến Thành",
+   "kind": "landmark",
+   "lat": 10.772521,
+   "lng": 106.698019,
+   "name": "Chợ Bến Thành",
+   "place_id": "vm_5e4326a67826fc4c",
+   "province": "Thành phố Hồ Chí Minh",
+   "score": 217.8323974609375
+  },
+  {
+   "address": "Quận 1",
+   "confidence": "exact",
+   "district": "Phường Bến Thành",
+   "kind": "poi",
+   "lat": 10.772620399482859,
+   "lng": 106.6992917,
+   "name": "Chợ Bến Thành",
+   "place_id": "vm_03aed4c32ff8ff4d",
+   "province": "Thành phố Hồ Chí Minh",
+   "score": 78.12423706054688
+  }
+ ]
+}

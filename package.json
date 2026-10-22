@@ -1,0 +1,12 @@
+{
+  "name": "vapp-maps-google-migration",
+  "version": "0.1.0",
+  "description": "Move from Google Geocoding / Places Autocomplete to map.vapp.vn, keeping Google's JSON shape",
+  "license": "MIT",
+  "type": "module",
+  "main": "src/index.ts",
+  "scripts": {
+    "test": "bun test",
+    "record": "bun scripts/record-fixtures.ts"
+  }
+}

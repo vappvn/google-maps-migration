@@ -1,0 +1,29 @@
+{
+ "engine": "tantivy",
+ "q": "zzqxv không có",
+ "results": [
+  {
+   "address": "Thủ Dầu Một",
+   "confidence": "approximate",
+   "district": "Phường Thủ Dầu Một",
+   "kind": "gym",
+   "lat": 10.97482967376709,
+   "lng": 106.66539764404297,
+   "name": "Co Co Lounge",
+   "place_id": "vm_09101957d3ef0363",
+   "province": "Thành phố Hồ Chí Minh",
+   "score": 15.860566139221191
+  },
+  {
+   "address": "Phan Rang-Tháp Chàm",
+   "confidence": "approximate",
+   "district": "Phường Phan Rang",
+   "kind": "coffee_shop",
+   "lat": 11.571266174316406,
+   "lng": 108.98751831054688,
+   "name": "Cỏ Hồng",
+   "place_id": "vm_c85de6c9d00e520e",
+   "score": 14.100003242492676
+  }
+ ]
+}

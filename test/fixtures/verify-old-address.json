@@ -1,0 +1,31 @@
+{
+ "address": "12 Lê Lợi, Phường Sài Gòn, Thành phố Hồ Chí Minh",
+ "alternatives": [],
+ "commune": "Phường Sài Gòn",
+ "confidence": 1,
+ "match": {
+  "district": "Phường Sài Gòn",
+  "kind": "tertiary",
+  "lat": 10.77481129948301,
+  "lng": 106.70168760000001,
+  "name": "Lê Lợi",
+  "place_id": "vm_cd7d049561b69562",
+  "province": "Thành phố Hồ Chí Minh",
+  "score": 0
+ },
+ "parsed": {
+  "district": "1",
+  "house": "12",
+  "province": "hcm",
+  "rest": [],
+  "street": "le loi",
+  "ward": "ben nghe"
+ },
+ "precision": "street",
+ "province": "Thành phố Hồ Chí Minh",
+ "q": "12 Lê Lợi, phường Bến Nghé, quận 1, TP.HCM",
+ "reasons": [
+  "old_units_converted"
+ ],
+ "status": "corrected"
+}
