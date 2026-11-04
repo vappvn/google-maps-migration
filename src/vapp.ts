@@ -1,4 +1,4 @@
-// A small map.vapp.vn client: plain fetch, no dependencies (Bun, Node 18+, Deno, browsers).
+// A small map.vapp.vn client: plain fetch, no dependencies. Bun, Deno and Node 22.18+ run the .ts as is; older Node and browsers build it first.
 // Each method returns the gateway's JSON as is; google-compat.ts turns it into Google's shape.
 
 export interface VappOptions {
@@ -38,8 +38,13 @@ export interface VerifyResponse {
 export interface ConvertResponse { input: string; status: string; address?: string; province_new?: string; note: string }
 
 export class VappError extends Error {
-  constructor(readonly status: number, readonly body: string) {
+  // Plain fields, not `constructor(readonly status…)`: Node runs .ts by stripping types and rejects parameter properties.
+  readonly status: number;
+  readonly body: string;
+  constructor(status: number, body: string) {
     super(`map.vapp.vn HTTP ${status}: ${body.slice(0, 200)}`);
+    this.status = status;
+    this.body = body;
   }
 }
 

@@ -1,8 +1,9 @@
 # Chuyển từ Google Maps API sang map.vapp.vn — mã mẫu
 
 Mã mẫu của ERPFit cho lập trình viên đang gọi Google Geocoding API hoặc Places Autocomplete và muốn chuyển sang
-[map.vapp.vn](https://map.vapp.vn) mà không phải sửa chỗ đọc kết quả. Thư viện nhỏ, không phụ thuộc gói nào: chạy
-trên Bun, Node 18+, Deno và trình duyệt (chỉ dùng `fetch`).
+[map.vapp.vn](https://map.vapp.vn) mà không phải sửa chỗ đọc kết quả. Thư viện nhỏ, không phụ thuộc gói nào, chỉ dùng
+`fetch`. Bun, Deno và Node 22.18+ chạy thẳng file `.ts`; Node 18 và 20 hoặc trình duyệt thì build trước, ví dụ
+`bun build examples/geocode.ts --target=node --outfile dist/geocode.mjs`.
 
 - `src/vapp.ts`: gọi API map.vapp.vn (geocode, reverse, autocomplete, verify, convert).
 - `src/google-compat.ts`: đổi kết quả sang đúng dạng JSON của Google (`results[0].geometry.location`,
@@ -56,17 +57,22 @@ Mỗi gợi ý của autocomplete đã có tọa độ (`location`), nên không
    tên gần giống, trong khi Google trả `ZERO_RESULTS`. `toGoogleGeocode` bỏ các kết quả yếu hơn `minConfidence`
    (mặc định `"district"`: 12 câu hỏi thật đều đạt mức này) và khi đó trả `ZERO_RESULTS`. Muốn giữ cả kết quả yếu:
    `toGoogleGeocode(res, { minConfidence: "fuzzy" })`; chúng có `partial_match: true`.
-2. **`confidence` không phải bằng chứng.** "qwerty 99999 xyz" vẫn ra "XYZ Café" với `confidence: "exact"`, và
-   "Vincom Bà Triệu, Hà Nội" ra một địa điểm ở Hải Phòng. Nếu bạn biết tỉnh, so với `results[0]` trước khi lưu. Với
-   địa chỉ khách nhập lúc đặt hàng, dùng `v.verify()`: `status` là `verified`, `corrected` (kèm địa chỉ mới),
+2. **`confidence` không phải bằng chứng.** Đây là mức điểm tìm kiếm, không phải phép so khớp: "qwerty 99999 xyz" vẫn
+   ra "XYZ Café" với `confidence: "exact"`, và thêm tên tỉnh vào câu rác cũng chỉ đưa nó về một địa điểm trong tỉnh đó.
+   Với địa chỉ khách nhập lúc đặt hàng, dùng `v.verify()`: `status` là `verified`, `corrected` (kèm địa chỉ mới),
    `ambiguous` (hỏi lại khách), `unsupported` hoặc `invalid`.
 3. **Số nhà nằm trên tim đường.** Tọa độ số nhà được nội suy trên tim đường (`location_type: "RANGE_INTERPOLATED"`),
    không phải nóc nhà như `ROOFTOP` của Google, nên có thể lệch tới khoảng 150 m so với ghim của Google.
+   Đoạn đường chưa đủ mốc thì không có số nhà: kết quả là cả con đường (`types: ["route"]`,
+   `location_type: "GEOMETRIC_CENTER"`). Cần chính xác tới số nhà thì kiểm tra `types[0] === "street_address"`.
 4. **Không có `address_components`.** Muốn từng phần (số nhà, đường, phường, tỉnh), đọc `parsed` của
    `/api/v1/geocode` hoặc `/api/v1/verify`.
 5. **Địa chỉ theo đơn vị hành chính mới.** `formatted_address` ghi phường, xã mới và tỉnh, thành phố mới (từ
    01/07/2025), không ghi quận, huyện. Địa chỉ cũ vẫn geocode được; `v.convert()` đổi địa chỉ cũ sang địa chỉ mới.
-6. **Thứ tự tọa độ.** Mẫu này nhận `lat, lng` như Google. Các API chỉ đường, ma trận và isochrone của map.vapp.vn
+6. **Reverse trả địa điểm gần nhất, không phải địa chỉ.** `toGoogleReverse` lấy `formatted_address` từ tên của điểm
+   gần nhất, ví dụ "Chợ Bến Thành", và điểm đó có thể không có `district`, `province`. Cần địa chỉ đầy đủ thì đừng
+   đọc trường này như địa chỉ của Google.
+7. **Thứ tự tọa độ.** Mẫu này nhận `lat, lng` như Google. Các API chỉ đường, ma trận và isochrone của map.vapp.vn
    nhận `lng,lat`: xem [hướng dẫn chuyển từ Google Maps](https://map.vapp.vn/huong-dan/thay-google-maps-api).
 
 ## Khóa API và giá
